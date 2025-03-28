@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { CircleDollarSign, TrendingUp, Users, Sparkles, Leaf } from 'lucide-react';
+import { CircleDollarSign, TrendingUp, Users, Sparkles, Leaf, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Features = () => {
@@ -65,6 +65,18 @@ const Features = () => {
         "Sustainability benchmarking against industry standards",
         "Green initiative ROI analysis",
         "Automated ESG compliance documentation"
+      ]
+    },
+    {
+      icon: <BarChart3 className="h-16 w-16 text-wealthwhiz-blue-light" />,
+      title: "Smart Portfolio Rebalancing",
+      description: "Automated portfolio management that intelligently rebalances your investments to maintain your target allocation.",
+      details: [
+        "Custom allocation targets based on risk profile",
+        "Tax-efficient rebalancing strategies",
+        "Intelligent drift detection and alerts",
+        "Automated periodic rebalancing",
+        "Performance tracking against benchmarks"
       ]
     }
   ];
