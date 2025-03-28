@@ -17,23 +17,23 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 bg-black text-white backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold text-wealthwhiz-blue">
-            Wealth<span className="text-wealthwhiz-blue-light">Whiz</span>
+          <Link to="/" className="text-2xl font-bold text-wealthwhiz-blue-light">
+            Wealth<span className="text-white">Whiz</span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/features" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
+          <Link to="/features" className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors">
             Features
           </Link>
-          <a href="#about" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
+          <a href="#about" className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors">
             About
           </a>
-          <a href="#tech" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
+          <a href="#tech" className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors">
             Tech Stack
           </a>
           
@@ -44,7 +44,7 @@ const Navbar = () => {
               </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
+                  <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-gray-800">
                     <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -74,7 +74,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white hover:bg-gray-800">
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
@@ -82,25 +82,25 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="md:hidden bg-black border-t border-gray-800">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <Link 
               to="/features" 
-              className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors py-2"
+              className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
             </Link>
             <a 
               href="#about" 
-              className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors py-2"
+              className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </a>
             <a 
               href="#tech" 
-              className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors py-2"
+              className="text-gray-300 hover:text-wealthwhiz-blue-light transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Tech Stack
@@ -121,7 +121,7 @@ const Navbar = () => {
                     signOut();
                     setIsMenuOpen(false);
                   }}
-                  className="justify-start px-0 text-red-500"
+                  className="justify-start px-0 text-red-500 hover:bg-transparent"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>

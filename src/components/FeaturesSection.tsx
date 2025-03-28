@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CircleDollarSign, TrendingUp, Users, Sparkles, Leaf } from 'lucide-react';
+import { CircleDollarSign, TrendingUp, Users, Sparkles, Leaf, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const FeaturesSection = () => {
@@ -34,6 +34,12 @@ const FeaturesSection = () => {
       title: "Sustainability Impact Tracking",
       description: "Monitor your company's environmental footprint and track progress on green initiatives.",
       bullets: ["Carbon footprint tracking", "ESG reporting", "Impact measurement"]
+    },
+    {
+      icon: <BarChart3 className="h-10 w-10 text-wealthwhiz-blue-light" />,
+      title: "Smart Portfolio Rebalancing",
+      description: "Automated portfolio management that intelligently rebalances your investments to maintain your target allocation.",
+      bullets: ["Custom allocation targets", "Tax-efficient rebalancing", "Intelligent drift detection"]
     }
   ];
 
