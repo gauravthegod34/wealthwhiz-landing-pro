@@ -1,11 +1,20 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
@@ -27,12 +36,40 @@ const Navbar = () => {
           <a href="#tech" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
             Tech Stack
           </a>
-          <Link to="/dashboard" className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white px-4 py-2 rounded-md">
-            Log In
-          </Link>
-          <Button className="bg-wealthwhiz-green hover:opacity-90 text-white">
-            Sign Up Free
-          </Button>
+          
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <Link to="/dashboard" className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white px-4 py-2 rounded-md">
+                Dashboard
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem className="text-sm">
+                    <span className="font-medium">{user.email}</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()} className="text-red-500 cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          ) : (
+            <>
+              <Link to="/auth" className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white px-4 py-2 rounded-md">
+                Log In
+              </Link>
+              <Button className="bg-wealthwhiz-green hover:opacity-90 text-white" asChild>
+                <Link to="/auth?tab=signup">Sign Up Free</Link>
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -68,16 +105,50 @@ const Navbar = () => {
             >
               Tech Stack
             </a>
-            <Link 
-              to="/dashboard" 
-              className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white py-2 px-4 rounded-md text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Log In
-            </Link>
-            <Button className="bg-wealthwhiz-green hover:opacity-90 text-white w-full">
-              Sign Up Free
-            </Button>
+            
+            {user ? (
+              <>
+                <Link 
+                  to="/dashboard" 
+                  className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white py-2 px-4 rounded-md text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Button 
+                  variant="ghost"
+                  onClick={() => {
+                    signOut();
+                    setIsMenuOpen(false);
+                  }}
+                  className="justify-start px-0 text-red-500"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link 
+                  to="/auth" 
+                  className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white py-2 px-4 rounded-md text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Log In
+                </Link>
+                <Button 
+                  className="bg-wealthwhiz-green hover:opacity-90 text-white w-full"
+                  asChild
+                >
+                  <Link 
+                    to="/auth?tab=signup"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign Up Free
+                  </Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}
