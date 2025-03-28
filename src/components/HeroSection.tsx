@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CircleDollarSign, TrendingUp } from 'lucide-react';
 
@@ -19,11 +20,11 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-wealthwhiz-green hover:bg-opacity-90 text-white px-8 py-6 text-lg">
-                Get Started for Free
+              <Button className="bg-wealthwhiz-green hover:bg-opacity-90 text-white px-8 py-6 text-lg" asChild>
+                <Link to="/features">Get Started for Free</Link>
               </Button>
-              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
-                Watch Demo
+              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 px-8 py-6 text-lg" asChild>
+                <Link to="/dashboard">Try Dashboard Demo</Link>
               </Button>
             </div>
             

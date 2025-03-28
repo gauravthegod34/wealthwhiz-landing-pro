@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -10,25 +11,25 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-wealthwhiz-blue">
+          <Link to="/" className="text-2xl font-bold text-wealthwhiz-blue">
             Wealth<span className="text-wealthwhiz-blue-light">Whiz</span>
-          </h1>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#features" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
+          <Link to="/features" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
             Features
-          </a>
+          </Link>
           <a href="#about" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
             About
           </a>
           <a href="#tech" className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors">
             Tech Stack
           </a>
-          <Button className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white">
+          <Link to="/dashboard" className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white px-4 py-2 rounded-md">
             Log In
-          </Button>
+          </Link>
           <Button className="bg-wealthwhiz-green hover:opacity-90 text-white">
             Sign Up Free
           </Button>
@@ -46,13 +47,13 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a 
-              href="#features" 
+            <Link 
+              to="/features" 
               className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
-            </a>
+            </Link>
             <a 
               href="#about" 
               className="text-gray-700 hover:text-wealthwhiz-blue-light transition-colors py-2"
@@ -67,9 +68,13 @@ const Navbar = () => {
             >
               Tech Stack
             </a>
-            <Button className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white w-full">
+            <Link 
+              to="/dashboard" 
+              className="bg-wealthwhiz-blue-light hover:bg-wealthwhiz-blue text-white py-2 px-4 rounded-md text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Log In
-            </Button>
+            </Link>
             <Button className="bg-wealthwhiz-green hover:opacity-90 text-white w-full">
               Sign Up Free
             </Button>
